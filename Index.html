@@ -1,1 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Coleta de Dados - JK Universitário</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
+<div class="container">
+    <h2>Formulário de Coleta de Dados - JK Universitário</h2>
+    
+    <form id="coletaDadosForm" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="nome" required>
+        </div>
+        <div class="form-group">
+            <label for="sobrenome">Sobrenome</label>
+            <input type="text" id="sobrenome" name="sobrenome" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="cpf">CPF</label>
+            <input type="text" id="cpf" name="cpf" maxlength="14" required>
+        </div>
+
+        <div class="form-group">
+            <label for="rg">RG</label>
+            <input type="text" id="rg" name="rg" maxlength="12" required>
+        </div>
+
+        <div class="form-group">
+            <label for="rgFoto">Envio de foto do RG</label>
+            <input type="file" id="rgFoto" name="rgFoto" accept="image/*" required>
+        </div>
+
+        <div class="form-group">
+            <label for="passaporte">Passaporte (se estrangeiro)</label>
+            <input type="text" id="passaporte" name="passaporte" maxlength="9">
+        </div>
+
+        <div class="form-group">
+            <label for="passaporteFoto">Envio de foto do Passaporte</label>
+            <input type="file" id="passaporteFoto" name="passaporteFoto" accept="image/*">
+        </div>
+
+        <div class="form-group">
+            <label for="matricula">Matrícula de estudante</label>
+            <input type="text" id="matricula" name="matricula" required>
+        </div>
+
+        <div class="form-group">
+            <label for="matriculaFoto">Envio de foto da matrícula</label>
+            <input type="file" id="matriculaFoto" name="matriculaFoto" accept="image/*" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+
+        <div class="form-group">
+            <label for="telefone">Telefone</label>
+            <input type="tel" id="telefone" name="telefone" required>
+        </div>
+
+        <div class="form-group">
+            <label for="selfieDoc">Envio de selfie com documento (RG)</label>
+            <input type="file" id="selfieDoc" name="selfieDoc" accept="image/*" required>
+        </div>
+
+        <h3>Contatos de Familiares Próximos</h3>
+        
+        <div class="form-group-inline">
+            <div class="form-group">
+                <label for="contatoNome">Nome</label>
+                <input type="text" id="contatoNome" name="contatoNome" required>
+            </div>
+            <div class="form-group">
+                <label for="contatoSobrenome">Sobrenome</label>
+                <input type="text" id="contatoSobrenome" name="contatoSobrenome" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="contatoTelefone">Telefone</label>
+            <input type="tel" id="contatoTelefone" name="contatoTelefone" required>
+        </div>
+
+        <div class="form-group">
+            <label for="contatoEndereco">Endereço</label>
+            <input type="text" id="contatoEndereco" name="contatoEndereco" required>
+        </div>
+
+        <div class="form-group">
+            <label for="contatoParentesco">Grau de Parentesco</label>
+            <input type="text" id="contatoParentesco" name="contatoParentesco" required>
+        </div>
+
+        <button type="submit" class="submit-btn">Enviar</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById('coletaDadosForm').addEventListener('submit', async function (e) {
+        e.preventDefault();
+        
+        const formData = new FormData(this);
+
+        try {
+            const response = await fetch('URL_GOOGLE_APPS_SCRIPT', {
+                method: 'POST',
+                body: formData
+            });
+            if (response.ok) {
+                alert('Dados enviados com sucesso!');
+            } else {
+                alert('Erro ao enviar os dados');
+            }
+        } catch (error) {
+            console.error('Erro:', error);
+        }
+    });
+</script>
+
+</body>
+</html>
